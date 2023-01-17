@@ -122,6 +122,16 @@ select {
     gap: var(--gap, 1rem)
 }
 
+/* adjacent combinator " * + * " 
+looks at each child because of the > and then checks
+to see if it has an adjacent "sibling" that comes before it
+if it doesn't, then it doesn't apply the style */
+.flow > * + * {
+    /* variable flow space OR 1 rem default */
+    margin-top: var(--flow-space, 1rem);
+    
+}
+
 .container {
     /* newer CSS option for looking at the inline of the container */
     padding-inline: 2em;
@@ -184,4 +194,22 @@ a screen reader */
 .fs-700,
 .fs-600 {
     line-height: 1.1;
+}
+
+/* ------------------- */
+/*     Components      */
+/* ------------------- */
+
+.large-button {
+    /* display grid because this is a link, which is an in-line element
+    and height doesn't work the same and simplifies centering our text. */
+    display: grid;
+    /* shorthand for alight-items/justify-items */
+    place-items: center;
+    padding: 0 2em;
+    border-radius: 50%;
+    /* modern CSS solution that turns this element into a square
+    it is width / height ration, but 1/1 is represented as just 1 */
+    aspect-ratio: 1;
+    text-decoration: none;
 }
