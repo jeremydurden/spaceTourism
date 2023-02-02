@@ -95,6 +95,8 @@ body {
   display: grid;
   /*creating 2 rows for min size for content one one for remaining space */
   grid-template-rows: min-content 1fr;
+  /* in case resizing shows the mobile menu off to the side */
+  overflow-x: hidden;
 }
 
 /* make images easier to work with */
@@ -136,7 +138,8 @@ select {
 .flex {
   display: flex;
   /* sets a default property, but also allows for use of a 
-    variable later on */
+    variable later on, on a different class that might be included in addition to this class on
+    an element*/
   gap: var(--gap, 1rem);
 }
 
@@ -366,11 +369,25 @@ a screen reader */
 }
 
 .primary-navigation {
-  --gap: 8rem;
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
+  background: hsl(var(--clr-dark) / 0.95);
+  /* backdrop-filter: blur(2rem); */
+}
+
+.mobile-nav-toggle {
+  display: none;
+}
+
+/* checks feature support for a property and value in case a particular 
+browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
+@supports (backdrop-filter: blur(1.5rem)) {
+  .primary-navigation {
+    background: hsl(var(--clr-white) / 0.05);
+    backdrop-filter: blur(2rem);
+  }
 }
 
 .primary-navigation a {
@@ -407,6 +424,62 @@ a screen reader */
 .underline-indicators > [aria-selected="true"] {
   color: hsl(var(--clr-white) / 1);
   border-color: hsl(var(--clr-white) / 1);
+}
+
+/* Primary navigation menu for mobile screen sizes */
+@media (max-width: 35rem) {
+  .primary-navigation {
+    --underline-gap: 0.5rem;
+    position: fixed;
+    z-index: 1000;
+    /* top, left, bottom, right */
+    inset: 0 0 0 30%;
+    list-style: none;
+    padding: min(20rem, 10vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    /* moves it to the right 100% so that it is no longer visible */
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(0);
+  }
+
+  /*  * isn't working for all for some reason */
+  .primary-navigation.underline-indicators > .active,
+  .primary-navigation.underline-indicators > a,
+  .primary-navigation.underline-indicators > ul,
+  .primary-navigation.underline-indicators > li {
+    border: 0;
+  }
+  .mobile-nav-toggle {
+    /* the button has a display: none on the larger screen sizes to remove it from the DOM
+    this adds it back to the DOM as a block level element, but then we don't actually want to see
+    the button, so we set it to background: transparent and border: 0 */
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    right: 1.5rem;
+    top: 2rem;
+    background: transparent;
+    /* bring in the hamburger icon to use as a visual instead of the button and set it to no-repeat
+    because it was looking funky.  width and aspect ration make it a 1.5rem square */
+    background: center;
+    background-image: url(./assets/shared/icon-hamburger.svg);
+    background-repeat: no-repeat;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: 0;
+  }
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(./assets/shared/icon-close.svg);
+    transition: background-image 200ms ease-in-out;
+  }
+  .mobile-nav-toggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
+  }
 }
 
 .tab-list {
@@ -471,6 +544,7 @@ body {
 
 @media (min-width: 35rem) {
   .home {
+    background-position: center center;
     background-image: url(./assets/home/background-home-tablet.jpg);
   }
 }

@@ -20,6 +20,7 @@
     />
 
     <title>Space Tourism</title>
+    <script src="app.js" defer></script>
   </head>
   <body class="home">
     <header class="primary-header flex">
@@ -30,8 +31,22 @@
           class="logo"
         />
       </div>
-      <!-- <nav>
-        <ul class="primary-navigation underline-indicators flex">
+      <!-- accessibility for nav menu toggle on mobile for screen readers
+        primary-navigation links it to the UL and aria-expanded="false" will be updated
+        with JavaScript -->
+      <button
+        data-visible="false"
+        class="mobile-nav-toggle"
+        aria-controls="primary-navigation"
+      >
+        <span class="sr-only" aria-expanded="false">Menu</span>
+      </button>
+      <nav>
+        <ul
+          id="primary-navigation"
+          data-visible="false"
+          class="primary-navigation underline-indicators flex"
+        >
           <li class="active">
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2"
@@ -61,7 +76,7 @@
             >
           </li>
         </ul>
-      </nav> -->
+      </nav>
     </header>
 
     <div class="grid-container grid-container--home">
@@ -79,6 +94,7 @@
       </div>
       <div>
         <a
+          id="test"
           href="#"
           class="large-button uppercase ff-serif fs-600 text-dark bg-white"
           >Explore</a
