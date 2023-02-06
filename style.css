@@ -228,6 +228,21 @@ a screen reader */
   border: 0;
 }
 
+.skip-to-content {
+  position: absolute;
+  z-index: 9999;
+  background: hsl(var(--clr-white));
+  color: hsl(var(--clr-dark));
+  padding: 0.5em 1em;
+  margin-inline: auto;
+  transform: translateY(-100%);
+  transition: transform 250ms ease-in;
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+}
+
 /* COLORS */
 
 .bg-dark {
@@ -368,13 +383,35 @@ a screen reader */
   transform: scale(1.5);
 }
 
+/* Primary Header */
+
+.logo {
+  /* clamp(can't get smaller than, will grow by this much, maxes out at this value) */
+  margin: 1.5rem clamp(1.5rem, 5vw, 3.5rem);
+}
+
+.primary-header {
+  justify-content: space-between;
+  align-items: center;
+}
+
 .primary-navigation {
+  --gap: clamp(1.5rem, 5vw, 3.5rem);
   --underline-gap: 2rem;
   list-style: none;
   padding: 0;
   margin: 0;
   background: hsl(var(--clr-dark) / 0.95);
   /* backdrop-filter: blur(2rem); */
+}
+
+.primary-navigation a {
+  text-decoration: none;
+}
+
+.primary-navigation a > span {
+  font-weight: 700;
+  margin-right: 0.5em;
 }
 
 .mobile-nav-toggle {
@@ -390,13 +427,86 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
   }
 }
 
-.primary-navigation a {
-  text-decoration: none;
+/* Primary navigation menu for mobile screen sizes */
+@media (max-width: 35rem) {
+  .primary-navigation {
+    --underline-gap: 0.5rem;
+    position: fixed;
+    z-index: 1000;
+    /* top, left, bottom, right */
+    inset: 0 0 0 30%;
+    list-style: none;
+    padding: min(20rem, 10vh) 2rem;
+    margin: 0;
+    flex-direction: column;
+    /* moves it to the right 100% so that it is no longer visible */
+    transform: translateX(100%);
+    transition: transform 500ms ease-in-out;
+  }
+  .primary-navigation[data-visible="true"] {
+    transform: translateX(0);
+  }
+
+  .mobile-nav-toggle {
+    /* the button has a display: none on the larger screen sizes to remove it from the DOM
+    this adds it back to the DOM as a block level element, but then we don't actually want to see
+    the button, so we set it to background: transparent and border: 0 */
+    display: block;
+    position: absolute;
+    z-index: 2000;
+    right: 1.5rem;
+    top: 2rem;
+    background: transparent;
+    /* bring in the hamburger icon to use as a visual instead of the button and set it to no-repeat
+    because it was looking funky.  width and aspect ration make it a 1.5rem square */
+    background: center;
+    background-image: url(./assets/shared/icon-hamburger.svg);
+    background-repeat: no-repeat;
+    width: 1.5rem;
+    aspect-ratio: 1;
+    border: 0;
+  }
+  .mobile-nav-toggle[aria-expanded="true"] {
+    background-image: url(./assets/shared/icon-close.svg);
+    transition: background-image 200ms ease-in-out;
+  }
+  .mobile-nav-toggle:focus-visible {
+    outline: 5px solid white;
+    outline-offset: 5px;
+  }
 }
 
-.primary-navigation a > span {
-  font-weight: 700;
-  margin-right: 0.5em;
+@media (min-width: 35em) {
+  .primary-navigation {
+    padding-inline: clamp(3rem, 8vw, 7rem);
+  }
+}
+
+@media (min-width: 35em) and (max-width: 44.999em) {
+  .primary-navigation a > span {
+    display: none;
+  }
+}
+
+@media (min-width: 45rem) {
+  .primary-header::after {
+    content: "";
+    display: block;
+    position: relative;
+    height: 1px;
+    width: 50%;
+    margin-left: clamp(0.5rem, 5vw, 5rem);
+    margin-right: -2.5rem;
+    background: hsl(var(--clr-white) / 0.25);
+    order: 1;
+  }
+  nav {
+    order: 2;
+  }
+  .primary-navigation {
+    /* similar to padding-inline — uses the logical start and end of a block styled element, so top/bottom typically */
+    margin-block: 2rem;
+  }
 }
 
 /* selecting every direct descendent so that this can be used on other components */
@@ -426,59 +536,13 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
   border-color: hsl(var(--clr-white) / 1);
 }
 
-/* Primary navigation menu for mobile screen sizes */
 @media (max-width: 35rem) {
-  .primary-navigation {
-    --underline-gap: 0.5rem;
-    position: fixed;
-    z-index: 1000;
-    /* top, left, bottom, right */
-    inset: 0 0 0 30%;
-    list-style: none;
-    padding: min(20rem, 10vh) 2rem;
-    margin: 0;
-    flex-direction: column;
-    /* moves it to the right 100% so that it is no longer visible */
-    transform: translateX(100%);
-    transition: transform 500ms ease-in-out;
-  }
-  .primary-navigation[data-visible="true"] {
-    transform: translateX(0);
-  }
-
   /*  * isn't working for all for some reason */
   .primary-navigation.underline-indicators > .active,
   .primary-navigation.underline-indicators > a,
   .primary-navigation.underline-indicators > ul,
   .primary-navigation.underline-indicators > li {
     border: 0;
-  }
-  .mobile-nav-toggle {
-    /* the button has a display: none on the larger screen sizes to remove it from the DOM
-    this adds it back to the DOM as a block level element, but then we don't actually want to see
-    the button, so we set it to background: transparent and border: 0 */
-    display: block;
-    position: absolute;
-    z-index: 2000;
-    right: 1.5rem;
-    top: 2rem;
-    background: transparent;
-    /* bring in the hamburger icon to use as a visual instead of the button and set it to no-repeat
-    because it was looking funky.  width and aspect ration make it a 1.5rem square */
-    background: center;
-    background-image: url(./assets/shared/icon-hamburger.svg);
-    background-repeat: no-repeat;
-    width: 1.5rem;
-    aspect-ratio: 1;
-    border: 0;
-  }
-  .mobile-nav-toggle[aria-expanded="true"] {
-    background-image: url(./assets/shared/icon-close.svg);
-    transition: background-image 200ms ease-in-out;
-  }
-  .mobile-nav-toggle:focus-visible {
-    outline: 5px solid white;
-    outline-offset: 5px;
   }
 }
 
