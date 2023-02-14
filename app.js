@@ -14,16 +14,3 @@ const handleNavToggle = () => {
 };
 
 navToggle.addEventListener("click", handleNavToggle);
-
-const skipToContent = document.querySelector(".skip-to-content");
-
-const handleSkipToContentToggle = () => {
-  const skipVisibility = skipToContent.getAttribute("data-visible");
-  console.log("first");
-
-  if (skipVisibility === "false") {
-    skipToContent.setAttribute("data-visible", true);
-  }
-};
-
-skipToContent.addEventListener("focus", handleSkipToContentToggle);
