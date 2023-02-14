@@ -171,49 +171,6 @@ if it doesn't, then it doesn't apply the style */
   max-width: 80rem;
 }
 
-.grid-container {
-  text-align: center;
-  display: grid;
-  /* grid specific centering both top and bottom elements within their top and bottom space as well as horizontally
-  place-content would do something similar but doesn't space the items apart vertically, so 
-  you would use a row-gap w/ it to create space */
-  place-items: center;
-  /* padding-line adding padding horizontally (naturally, but can do vertical if it makes sense
-  for the element) */
-  padding-inline: 1rem;
-}
-
-.grid-container * {
-  /* max width of X characters -- roughly equivalent to the zero 0 character in width */
-  max-width: 50ch;
-}
-
-@media (min-width: 45rem) {
-  .grid-container {
-    text-align: left;
-    column-gap: var(--container-gap, 2rem);
-    /* 2 columns of 2remm or as much space as is available, then repeat 2 times the min/max and then another column of 2em
-          for a total of 4 columns */
-    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
-        2rem,
-        1fr
-      );
-  }
-  .grid-container > *:first-child {
-    grid-column: 2;
-  }
-
-  .grid-container > *:last-child {
-    grid-column: 3;
-  }
-  .grid-container--home {
-    /* using max here is nice for people on a very large screen.  This stops the element from being
-    way down at the bottom of a screen and moves it more to the lower-third.  */
-    padding-bottom: max(6rem, 20vh);
-    align-items: end;
-  }
-}
-
 /* setup for screen readers only */
 /* visually hides content unless being unless the person is using
 a screen reader */
@@ -618,5 +575,87 @@ body {
 @media (min-width: 45rem) {
   .home {
     background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+}
+
+/* ---------------------------- */
+/*          Layout             */
+/* ---------------------------- */
+
+.grid-container {
+  text-align: center;
+  display: grid;
+  /* grid specific centering both top and bottom elements within their top and bottom space as well as horizontally
+  place-content would do something similar but doesn't space the items apart vertically, so 
+  you would use a row-gap w/ it to create space */
+  place-items: center;
+  /* padding-line adding padding horizontally (naturally, but can do vertical if it makes sense
+  for the element) */
+  padding-inline: 1rem;
+  padding-bottom: 2.5rem;
+}
+
+.grid-container p {
+  /* max width of X characters -- roughly equivalent to the zero 0 character in width */
+  max-width: 50ch;
+}
+
+.numbered-title {
+  grid-area: title;
+}
+/* Destination Layout */
+
+.grid-container--destination {
+  --flow-space: 2rem;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
+.grid-container--destination > img {
+  grid-area: image;
+  max-width: 60%;
+}
+
+.grid-container--destination > .tab-list {
+  grid-area: tabs;
+}
+
+.grid-container--destination > .destination-info {
+  grid-area: content;
+}
+
+.destination-meta {
+  flex-direction: column;
+  border-top: 1px solid hsl(var(--clr-white) / 0.25);
+  padding-top: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+@media (min-width: 45rem) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    /* 2 columns of 2remm or as much space as is available, then repeat 2 times the min/max and then another column of 2em
+          for a total of 4 columns */
+    grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2rem,
+        1fr
+      );
+  }
+  .grid-container > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+  }
+  .grid-container--home {
+    /* using max here is nice for people on a very large screen.  This stops the element from being
+    way down at the bottom of a screen and moves it more to the lower-third.  */
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
   }
 }
