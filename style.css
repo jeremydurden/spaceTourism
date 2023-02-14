@@ -595,7 +595,8 @@ body {
   padding-bottom: 2.5rem;
 }
 
-.grid-container p {
+/* only applying to p tags in the grid-container that do not have a class assocaited w/ them */
+.grid-container p:not([class]) {
   /* max width of X characters -- roughly equivalent to the zero 0 character in width */
   max-width: 50ch;
 }
@@ -629,33 +630,65 @@ body {
 
 .destination-meta {
   flex-direction: column;
-  border-top: 1px solid hsl(var(--clr-white) / 0.25);
+  border-top: 1px solid hsl(var(--clr-white) / 0.1);
   padding-top: 2.5rem;
   margin-top: 2.5rem;
+}
+
+.destination-meta p {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 35em) {
+  .numbered-title {
+    justify-self: start;
+    margin-top: 2rem;
+  }
+
+  .destination-meta {
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
 }
 
 @media (min-width: 45rem) {
   .grid-container {
     text-align: left;
     column-gap: var(--container-gap, 2rem);
-    /* 2 columns of 2remm or as much space as is available, then repeat 2 times the min/max and then another column of 2em
+    /* 2 columns of 2rem or as much space as is available, then repeat 2 times the min/max and then another column of 2em
           for a total of 4 columns */
     grid-template-columns: minmax(2rem, 1fr) repeat(2, minmax(0, 40rem)) minmax(
         2rem,
         1fr
       );
   }
-  .grid-container > *:first-child {
-    grid-column: 2;
-  }
-
-  .grid-container > *:last-child {
-    grid-column: 3;
-  }
   .grid-container--home {
     /* using max here is nice for people on a very large screen.  This stops the element from being
     way down at the bottom of a screen and moves it more to the lower-third.  */
     padding-bottom: max(6rem, 20vh);
     align-items: end;
+  }
+  .grid-container--home > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container--home > *:last-child {
+    grid-column: 3;
+  }
+  .grid-container--destination {
+    justify-items: start;
+    align-content: start;
+    grid-template-areas:
+      ". title title ."
+      ". image tabs ."
+      ". image content .";
+  }
+  .grid-container--destination > img {
+    max-width: 90%;
+  }
+  .destination-meta {
+    /* was seeing some wrapping on the text that I didn't want--choose the smaller size to resolve */
+    --gap: min(8vw, 6rem);
+    justify-content: start;
   }
 }
