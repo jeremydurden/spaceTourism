@@ -163,6 +163,13 @@ if it doesn't, then it doesn't apply the style */
   margin-top: var(--flow-space, 1rem);
 }
 
+.flow--space-small {
+  --flow-space: 0.5rem;
+}
+.flow--space-large {
+  --flow-space: 2rem;
+}
+
 .container {
   /* newer CSS option for looking at the inline of the container */
   padding-inline: 2em;
@@ -471,11 +478,12 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
 /* selecting every direct descendent so that this can be used on other components */
 .underline-indicators > * {
   cursor: pointer;
-  padding: var(--underline-gap, 1rem) 0;
+  padding: var(--underline-gap, 0.5rem) 0;
   /* removes any border that may exist before adding new borders
     ---useful for removing borders on the buttons */
   border: 0;
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0);
+  background-color: transparent;
 }
 
 .underline-indicators > li:hover,
@@ -558,9 +566,7 @@ body {
   background-size: cover;
   background-position: bottom center;
 }
-
-/* Home */
-
+/* home */
 .home {
   background-image: url(./assets/home/background-home-mobile.jpg);
 }
@@ -575,6 +581,42 @@ body {
 @media (min-width: 45rem) {
   .home {
     background-image: url(./assets/home/background-home-desktop.jpg);
+  }
+}
+
+/* destination */
+.destination {
+  background-image: url(./assets/destination/background-destination-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .destination {
+    background-position: center center;
+    background-image: url(./assets/destination/background-destination-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .destination {
+    background-image: url(./assets/destination/background-destination-desktop.jpg);
+  }
+}
+
+/* crew */
+.crew {
+  background-image: url(./assets/home/background-crew-mobile.jpg);
+}
+
+@media (min-width: 35rem) {
+  .crew {
+    background-position: center center;
+    background-image: url(./assets/crew/background-crew-tablet.jpg);
+  }
+}
+
+@media (min-width: 45rem) {
+  .crew {
+    background-image: url(./assets/crew/background-crew-desktop.jpg);
   }
 }
 
@@ -639,6 +681,36 @@ body {
   font-size: 1.75rem;
 }
 
+/* Crew Layout */
+
+.grid-container--crew {
+  padding-bottom: 0;
+  grid-template-areas:
+    "title"
+    "image"
+    "dots"
+    "content";
+}
+
+.grid-container--crew > img {
+  padding-inline: clamp(5vw, 5rem, 5rem);
+  grid-area: image;
+  max-width: 80%;
+  border-bottom: 1px solid hsl(var(--clr-white) / 0.1);
+}
+
+.grid-container--crew > .dot-indicators {
+  grid-area: dots;
+}
+
+.grid-container--crew > .crew-details {
+  grid-area: content;
+}
+
+.crew-details h2 {
+  color: hsl(var(--clr-white) / 0.5);
+}
+
 @media (min-width: 35em) {
   .numbered-title {
     justify-self: start;
@@ -648,6 +720,16 @@ body {
   .destination-meta {
     flex-direction: row;
     justify-content: space-evenly;
+  }
+  .grid-container--crew {
+    grid-template-areas:
+      "title"
+      "content"
+      "dots"
+      "image";
+  }
+  .grid-container--crew > img {
+    padding-inline: 0px;
   }
 }
 
@@ -683,12 +765,26 @@ body {
       ". image tabs ."
       ". image content .";
   }
-  .grid-container--destination > img {
+  .grid-container--destination > img,
+  .grid-container--crew > img {
     max-width: 90%;
   }
   .destination-meta {
     /* was seeing some wrapping on the text that I didn't want--choose the smaller size to resolve */
     --gap: min(8vw, 6rem);
     justify-content: start;
+  }
+  .grid-container--crew {
+    grid-template-areas:
+      ". title title ."
+      ". content image ."
+      ". dots image .";
+  }
+
+  .grid-container--crew > .dot-indicators {
+    justify-self: start;
+  }
+  .grid-container--crew > img {
+    align-self: end;
   }
 }
