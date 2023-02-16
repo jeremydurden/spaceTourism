@@ -657,7 +657,7 @@ body {
     "content";
 }
 
-.grid-container--destination > img {
+.grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
 }
@@ -692,7 +692,7 @@ body {
     "content";
 }
 
-.grid-container--crew > img {
+.grid-container--crew > picture {
   padding-inline: clamp(5vw, 5rem, 5rem);
   grid-area: image;
   max-width: 80%;
@@ -728,7 +728,7 @@ body {
       "dots"
       "image";
   }
-  .grid-container--crew > img {
+  .grid-container--crew > picture {
     padding-inline: 0px;
   }
 }
@@ -765,8 +765,8 @@ body {
       ". image tabs ."
       ". image content .";
   }
-  .grid-container--destination > img,
-  .grid-container--crew > img {
+  .grid-container--destination > picture,
+  .grid-container--crew > picture {
     max-width: 90%;
   }
   .destination-meta {
@@ -784,7 +784,7 @@ body {
   .grid-container--crew > .dot-indicators {
     justify-self: start;
   }
-  .grid-container--crew > img {
+  .grid-container--crew > picture {
     align-self: end;
   }
 }

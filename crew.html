@@ -103,8 +103,14 @@
           time as commander of Crew Dragon Demo-2.
         </p>
       </article>
-
-      <img src="assets/crew/image-douglas-hurley.png" alt="Douglas Hurley" />
+      <picture>
+        <!-- browser will use the png by default, but can use the webp (smaller) when it is supported -->
+        <source
+          srcset="assets/crew/image-douglas-hurley.png"
+          type="image/webp"
+        />
+        <img src="assets/crew/image-douglas-hurley.png" alt="Douglas Hurley" />
+      </picture>
     </main>
   </body>
 </html>
