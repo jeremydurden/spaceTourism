@@ -106,7 +106,8 @@ body {
 img,
 picture {
   max-width: 100%;
-  display: block;
+  /* this was overriding the hidden attribute on the picture element*/
+  /* display: block; */
 }
 
 /* make forms easier to work with */
