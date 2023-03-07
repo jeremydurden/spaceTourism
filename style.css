@@ -488,13 +488,13 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
 }
 
 .underline-indicators > li:hover,
-.underline-indicators > button:hover,
+.underline-indicators > button:hover
 /* .underline-indicators > a:hover, */
 /* .underline-indicators > span:hover, */
 /* .underline-indicators > span:focus, */
 /* .underline-indicators > a:focus, */
-.underline-indicators > button:focus, 
-.underline-indicators > li:focus {
+/* .underline-indicators > button:focus,  */
+/* .underline-indicators > li:focus  */ {
   border-bottom: 0.2rem solid hsl(var(--clr-white) / 0.5);
 }
 

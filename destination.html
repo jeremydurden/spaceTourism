@@ -20,7 +20,8 @@
     />
 
     <title>Space Tourism</title>
-    <script src="app.js" type="module" defer></script>
+    <script src="app.js" defer></script>
+    <script src="tabs.js" type="module" defer></script>
   </head>
   <body class="destination">
     <a class="skip-to-content" href="#main">Skip to content</a>
@@ -99,33 +100,48 @@
           alt="the moon"
         />
       </picture>
-      <div class="tab-list underline-indicators flex">
+      <div
+        class="tab-list underline-indicators flex"
+        role="tablist"
+        aria-label="destination list"
+      >
         <button
           aria-selected="true"
-          class="uppercase ff-sans-cond text-accent moonButton"
+          role="tab"
+          data-tab-Panel="moon"
+          tabindex="0"
+          class="uppercase ff-sans-cond text-accent"
         >
           Moon
         </button>
         <button
           aria-selected="false"
-          class="uppercase ff-sans-cond text-accent marsButton"
+          role="tab"
+          data-tab-Panel="mars"
+          tabindex="-1"
+          class="uppercase ff-sans-cond text-accent"
         >
           Mars
         </button>
         <button
           aria-selected="false"
-          class="uppercase ff-sans-cond text-accent europaButton"
+          role="tab"
+          data-tab-Panel="europa"
+          tabindex="-1"
+          class="uppercase ff-sans-cond text-accent"
         >
           Europa
         </button>
         <button
           aria-selected="false"
-          class="uppercase ff-sans-cond text-accent titanButton"
+          role="tab"
+          data-tab-Panel="titan"
+          tabindex="-1"
+          class="uppercase ff-sans-cond text-accent"
         >
           Titan
         </button>
       </div>
-      <!-- The moon -->
       <article class="destination-info flow">
         <h2 class="fs-800 uppercase ff-serif locationName">Moon</h2>
 
@@ -144,72 +160,6 @@
           <div>
             <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
             <p class="ff-serif uppercase locationTravel">3 days</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Mars -->
-      <article hidden class="destination-info flow">
-        <h2 class="fs-800 uppercase ff-serif">Mars</h2>
-
-        <p>
-          Don't forget to pack your hiking boots. You'll need them to tackle
-          Olympus Mons, the tallest planetary mountain in our solar system. It's
-          two and a half times the size of Everest!
-        </p>
-
-        <div class="destination-meta flex">
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
-            <p class="ff-serif uppercase">225 mil. km</p>
-          </div>
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
-            <p class="ff-serif uppercase">9 months</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Europa -->
-      <article hidden class="destination-info flow">
-        <h2 class="fs-800 uppercase ff-serif">Europa</h2>
-
-        <p>
-          The smallest of the four Galilean moons orbiting Jupiter, Europa is a
-          winter lover's dream. With an icy surface, it's perfect for a bit of
-          ice skating, curling, hockey, or simple relaxation in your snug
-          wintery cabin.
-        </p>
-        <div class="destination-meta flex">
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
-            <p class="ff-serif uppercase">628 mil. km</p>
-          </div>
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
-            <p class="ff-serif uppercase">3 years</p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Titan -->
-      <article hidden class="destination-info flow">
-        <h2 class="fs-800 uppercase ff-serif">Titan</h2>
-
-        <p>
-          The only moon known to have a dense atmosphere other than Earth, Titan
-          is a home away from home (just a few hundred degrees colder!). As a
-          bonus, you get striking views of the Rings of Saturn.
-        </p>
-
-        <div class="destination-meta flex">
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Avg. distance</h3>
-            <p class="ff-serif uppercase">1.6 bil. km</p>
-          </div>
-          <div>
-            <h3 class="text-accent fs-200 uppercase">Est. travel time</h3>
-            <p class="ff-serif uppercase">7 years</p>
           </div>
         </div>
       </article>
