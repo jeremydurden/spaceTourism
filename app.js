@@ -12,3 +12,5 @@ const handleNavToggle = () => {
     navToggle.setAttribute("aria-expanded", false);
   }
 };
+
+navToggle.addEventListener("click", handleNavToggle);

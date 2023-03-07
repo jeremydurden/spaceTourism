@@ -505,12 +505,11 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
 }
 
 @media (max-width: 35rem) {
-  /*  * isn't working for all for some reason */
   .primary-navigation.underline-indicators > .active,
   .primary-navigation.underline-indicators > a,
   .primary-navigation.underline-indicators > ul,
   .primary-navigation.underline-indicators > li {
-    border: 0;
+    max-width: 50%;
   }
 }
 
@@ -527,8 +526,7 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
   background-color: hsl(var(--clr-white) / 0.25);
 }
 
-.dot-indicators > button:hover,
-.dot-indicators > button:focus {
+.dot-indicators > button:hover {
   background-color: hsl(var(--clr-white) / 0.5);
 }
 
@@ -605,7 +603,7 @@ body {
 
 /* crew */
 .crew {
-  background-image: url(./assets/home/background-crew-mobile.jpg);
+  background-image: url(./assets/crew/background-crew-mobile.jpg);
 }
 
 @media (min-width: 35rem) {
