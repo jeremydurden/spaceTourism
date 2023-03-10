@@ -509,7 +509,7 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
   .primary-navigation.underline-indicators > a,
   .primary-navigation.underline-indicators > ul,
   .primary-navigation.underline-indicators > li {
-    max-width: 50%;
+    max-width: 70%;
   }
 }
 
@@ -537,12 +537,12 @@ browswer doesn't yet support something like 'backdrop-filter w/ blur()' */
 .number-indicators > * {
   cursor: pointer;
   border: 0;
-  width: 4.5rem;
+  width: 3rem;
   border-radius: 50%;
   aspect-ratio: 1;
   /* padding: 2.5rem; */
-  margin-left: 8rem;
-  border: 1px solid hsl(var(--clr-white) / 0.25);
+  margin-left: 0.75rem;
+  border: 1.5px solid hsl(var(--clr-white) / 0.25);
 }
 
 .number-indicators > button:hover,
@@ -617,6 +617,12 @@ body {
   .crew {
     background-image: url(./assets/crew/background-crew-desktop.jpg);
   }
+}
+
+/* Technology */
+
+.technology {
+  background-image: url(./assets/technology/background-technology-mobile.jpg);
 }
 
 /* ---------------------------- */
@@ -794,3 +800,32 @@ body {
     align-self: end;
   }
 }
+
+/* Technology Layout */
+
+.grid-container--technology {
+  grid-template-areas:
+    "title"
+    "image"
+    "numbers"
+    "content";
+}
+
+.grid-container--technology > img {
+  grid-area: image;
+  /* grid-column: span 2; */
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.grid-container--technology > number-indicators {
+  grid-area: numbers;
+}
+
+.grid-container--technology > .tech-details {
+  grid-area: content;
+}
+
+/* .tech-details h2 {
+  color: hsl(var(--clr-white) / 0.5);
+} */

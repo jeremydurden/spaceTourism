@@ -21,10 +21,10 @@
 
     <title>Space Tourism</title>
     <script src="app.js" defer></script>
-    <script src="dots.js" type="module" defer></script>
+    <script src="numbers.js" type="module" defer></script>
   </head>
 
-  <body class="crew">
+  <body class="technology">
     <a class="skip-to-content" href="#main">Skip to content</a>
     <header class="primary-header flex">
       <div>
@@ -57,14 +57,14 @@
               ><span aria-hidden="true">01</span>Destination</a
             >
           </li>
-          <li class="active">
+          <li>
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2"
               href="crew.html"
               ><span aria-hidden="true">02</span>Crew</a
             >
           </li>
-          <li>
+          <li class="active">
             <a
               class="ff-sans-cond uppercase text-white letter-spacing-2"
               href="technology.html"
@@ -75,12 +75,12 @@
       </nav>
     </header>
 
-    <main id="main" class="grid-container grid-container--crew flow">
+    <main id="main" class="grid-container grid-container--technology flow">
       <h1 class="numbered-title">
-        <span aria-hidden="true">02</span> Meet your crew
+        <span aria-hidden="true">03</span> Space launch 101
       </h1>
 
-      <div
+      <!-- <div
         class="dot-indicators flex"
         role="tablist"
         aria-label="crew member list"
@@ -125,37 +125,54 @@
         >
           <span class="sr-only">The Crew Engineer</span>
         </button>
+      </div> -->
+
+      <div
+        class="number-indicators numbers flex flow--space-small"
+        style="flex-direction: row"
+      >
+        <button class="bg-dark text-white ff-serif fs-600" aria-selected="true">
+          1
+        </button>
+        <button
+          class="bg-dark text-white ff-serif fs-600"
+          aria-selected="false"
+        >
+          2
+        </button>
+        <button
+          class="bg-dark text-white ff-serif fs-600"
+          aria-selected="false"
+        >
+          3
+        </button>
       </div>
 
       <article
-        class="crew-details flow flow--space-large"
+        class="tech-details flow flow--space-large"
         id="commander-tab"
         role="tabpanel"
         tabindex="0"
       >
         <header class="flow flow--space-small">
-          <h2 class="fs-600 ff-serif uppercase crewRole">Commander</h2>
-          <p class="fs-700 uppercase ff-serif crewName">Douglas Hurley</p>
+          <h2 class="fs-600 ff-sans uppercase text-accent">
+            The terminology...
+          </h2>
+          <p class="fs-700 uppercase ff-serif techName">Launch Vehicle</p>
         </header>
-        <p class="crewBio text-accent">
-          Douglas Gerald Hurley is an American engineer, former Marine Corps
-          pilot and former NASA astronaut. He launched into space for the third
-          time as commander of Crew Dragon Demo-2.
+        <p class="techDescription text-accent">
+          A launch vehicle or carrier rocket is a rocket-propelled vehicle used
+          to carry a payload from Earth's surface to space, usually to Earth
+          orbit or beyond. Our WEB-X carrier rocket is the most powerful in
+          operation. Standing 150 metres tall, it's quite an awe-inspiring sight
+          on the launch pad!
         </p>
       </article>
-      <picture>
-        <!-- browser will use the png by default, but can use the webp (smaller) when it is supported -->
-        <source
-          class="crewPicture"
-          srcset="assets/crew/image-douglas-hurley.png"
-          type="image/webp"
-        />
-        <img
-          class="crewImage"
-          src="assets/crew/image-douglas-hurley.png"
-          alt="Douglas Hurley"
-        />
-      </picture>
+      <img
+        class="crewImage"
+        src="assets/technology/image-launch-vehicle-landscape.jpg"
+        alt="Douglas Hurley"
+      />
     </main>
   </body>
 </html>
